@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(uuid())
+  name        String
+  email       String        @unique
+  password    String
+  role        Role
+  applications Application[]
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+model Application {
+  id          String             @id @default(uuid())
+  student     User               @relation(fields: [studentId], references: [id])
+  studentId   String
+  program     String
+  status      ApplicationStatus  @default(PENDING)
+  submittedAt DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+}
+
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}

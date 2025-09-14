@@ -1,103 +1,127 @@
-import Image from "next/image";
+
+"use client";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { Card } from "@/components/UI";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const { data: session } = useSession();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const features = [
+    {
+      title: "Easy Application Process",
+      description: "Submit your university application with our streamlined online process.",
+      icon: "📝",
+    },
+    {
+      title: "Real-time Status Updates",
+      description: "Track your application status and receive instant updates on your admission.",
+      icon: "🔄",
+    },
+    {
+      title: "Admin Dashboard",
+      description: "Comprehensive tools for administrators to manage and review applications.",
+      icon: "👨‍💼",
+    },
+  ];
+
+  return (
+    <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 min-h-screen">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+              <div className="sm:text-center lg:text-left">
+                <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl animate-fade-in-up">
+                  <span className="block xl:inline bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">🎓 UniAdmit</span>{' '}
+                  <span className="block text-blue-200 xl:inline">Portal</span>
+                </h1>
+                <p className="mt-3 text-base text-blue-200 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                  Your gateway to higher education. Apply to programs, track your applications, and manage the entire admission process seamlessly with our modern platform.
+                </p>
+                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                  {!session ? (
+                    <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex">
+                      <Link href="/register" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 md:py-4 md:text-lg md:px-10 shadow-lg hover:shadow-xl transition-all duration-200">
+                        🚀 Get Started
+                      </Link>
+                      <Link href="/login" className="w-full flex items-center justify-center px-8 py-3 border border-blue-400 text-base font-medium rounded-lg text-blue-200 bg-blue-900/50 hover:bg-blue-800/60 md:py-4 md:text-lg md:px-10 backdrop-blur-sm transition-all duration-200">
+                        🔑 Login
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex">
+                      {session.user?.role === "STUDENT" && (
+                        <>
+                          <Link href="/student/application" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 md:py-4 md:text-lg md:px-10 shadow-lg hover:shadow-xl transition-all duration-200">
+                            📝 Apply Now
+                          </Link>
+                          <Link href="/student/status" className="w-full flex items-center justify-center px-8 py-3 border border-green-400 text-base font-medium rounded-lg text-green-200 bg-green-900/50 hover:bg-green-800/60 md:py-4 md:text-lg md:px-10 backdrop-blur-sm transition-all duration-200">
+                            📊 View Applications
+                          </Link>
+                        </>
+                      )}
+                      {session.user?.role === "ADMIN" && (
+                        <Link href="/admin/applications" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 md:py-4 md:text-lg md:px-10 shadow-lg hover:shadow-xl transition-all duration-200">
+                          🛠️ Admin Dashboard
+                        </Link>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </main>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Features Section */}
+      <div className="py-12 bg-gradient-to-br from-slate-800 to-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:text-center">
+            <h2 className="text-base text-blue-400 font-semibold tracking-wide uppercase">Features</h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+              Everything you need for university admissions
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+              {features.map((feature, index) => (
+                <Card key={index} className="p-6 bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 backdrop-blur-sm">
+                  <div className="text-center">
+                    <div className="text-4xl mb-4">{feature.icon}</div>
+                    <h3 className="text-lg leading-6 font-medium text-white mb-2">{feature.title}</h3>
+                    <p className="text-base text-slate-300">{feature.description}</p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+          <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <span className="block">Ready to start your journey?</span>
+            <span className="block text-blue-300">Apply for admission today.</span>
+          </h2>
+          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+            <div className="inline-flex rounded-md shadow-lg">
+              <Link href="/register" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-lg text-slate-900 bg-gradient-to-r from-blue-400 to-indigo-400 hover:from-blue-500 hover:to-indigo-500 shadow-lg hover:shadow-xl transition-all duration-200">
+                🚀 Get started
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
