@@ -67,7 +67,7 @@ A modern, full-stack university admission system built with Next.js 15, featurin
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/amitesh-maurya/student-admission-system.git
+   git clone https://github.com/amitesh-maurya/Admission-Management-System.git
    cd student-admission-system
    ```
 
