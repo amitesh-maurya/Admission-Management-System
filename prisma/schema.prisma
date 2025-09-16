@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id          String        @id @default(uuid())
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   email       String        @unique
   password    String
@@ -25,7 +25,7 @@ enum Role {
 }
 
 model Application {
-  id          String             @id @default(uuid())
+  id          String             @id @default(auto()) @map("_id") @db.ObjectId
   student     User               @relation(fields: [studentId], references: [id])
   studentId   String
   program     String
