@@ -20,6 +20,9 @@ export async function POST(req: Request) {
   if (!program) {
     return NextResponse.json({ error: "Program is required" }, { status: 400 });
   }
+  if (!session.user.id) {
+    return NextResponse.json({ error: "Student ID is missing" }, { status: 400 });
+  }
   const application = await prisma.application.create({
     data: {
       program,
