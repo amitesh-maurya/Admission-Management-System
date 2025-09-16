@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ams.amiteshmaurya.com",
+    url: "https://uams.amiteshmaurya.com",
     siteName: "University Admission Management System",
     title: "University Admission Management System",
     description: "Apply to university programs and manage admissions efficiently with our comprehensive platform.",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     google: "google-site-verification-code",
   },
   alternates: {
-    canonical: "https://ams.amiteshmaurya.com",
+    canonical: "https://uams.amiteshmaurya.com",
   },
   icons: {
     icon: "/favicon.svg",
@@ -98,7 +98,7 @@ export default function RootLayout({
               "@type": "EducationalOrganization",
               "name": "University Admission Management System",
               "description": "A comprehensive university admission management system",
-              "url": "https://ams.amiteshmaurya.com",
+              "url": "https://uams.amiteshmaurya.com",
               "sameAs": [
                 "https://facebook.com/university",
                 "https://twitter.com/university",
