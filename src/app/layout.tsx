@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
   title: {
     default: "University Admission System",
     template: "%s | University Admission System"
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     description: "Apply to university programs and manage admissions efficiently with our comprehensive platform.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "University Admission System",
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     creator: "@university",
     title: "University Admission System",
     description: "Apply to university programs and manage admissions efficiently.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.svg"],
   },
   verification: {
     google: "google-site-verification-code",
@@ -67,9 +68,9 @@ export const metadata: Metadata = {
     canonical: "https://admission-system.vercel.app",
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-    shortcut: "/favicon.ico",
+    icon: "/favicon.svg",
+    apple: "/apple-touch-icon.svg",
+    shortcut: "/favicon.svg",
   },
 };
 
@@ -86,8 +87,8 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <meta name="theme-color" content="#3b82f6" /> */}
         <meta name="msapplication-TileColor" content="#3b82f6" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
         <link rel="manifest" href="/manifest.json" />
         <script
           type="application/ld+json"
@@ -109,6 +110,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}
+        suppressHydrationWarning={true}
       >
         <Providers>
           <ToastProvider>

@@ -1,0 +1,7 @@
+<!-- 192x192 icon -->
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="42" fill="#3b82f6"/>
+  <circle cx="96" cy="76" r="32" fill="white"/>
+  <rect x="64" y="108" width="64" height="42" rx="21" fill="white"/>
+  <text x="96" y="170" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">University</text>
+</svg>
