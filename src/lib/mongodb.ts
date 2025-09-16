@@ -1,13 +1,17 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI!;
+// Use the same DATABASE_URL that Prisma uses for consistency
+const uri = process.env.DATABASE_URL || process.env.MONGODB_URI;
 const options = {};
 
-let client;
+let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
-if (!process.env.MONGODB_URI) {
-  throw new Error("Please add your MongoDB URI to .env.local");
+// Set the default database name to 'admission_management'
+export const dbName = "admission_management";
+
+if (!uri) {
+  throw new Error("Please add your MongoDB URI to .env.local as DATABASE_URL or MONGODB_URI");
 }
 
 declare global {
@@ -27,9 +31,4 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = client.connect();
 }
 
-
-// Set the default database name to 'amitesh-dev', allow override with MONGODB_DB
-const dbName = process.env.MONGODB_DB || 'amitesh-dev';
-
-export { dbName };
 export default clientPromise;
