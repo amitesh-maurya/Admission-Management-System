@@ -6,20 +6,20 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id          String        @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  email       String        @unique
-  password    String
-  role        Role
+  id            String        @id @default(cuid())
+  name          String
+  email         String        @unique
+  password      String
+  role          Role
   emailVerified DateTime?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  applications Application[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  applications  Application[]
 }
 
 enum Role {
@@ -28,13 +28,13 @@ enum Role {
 }
 
 model Application {
-  id          String             @id @default(auto()) @map("_id") @db.ObjectId
-  student     User               @relation(fields: [studentId], references: [id])
+  id          String            @id @default(cuid())
+  student     User              @relation(fields: [studentId], references: [id])
   studentId   String
   program     String
-  status      ApplicationStatus  @default(PENDING)
-  submittedAt DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
+  status      ApplicationStatus @default(PENDING)
+  submittedAt DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 }
 
 enum ApplicationStatus {
