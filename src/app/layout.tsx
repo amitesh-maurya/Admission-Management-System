@@ -18,13 +18,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
   title: {
-    default: "University Admission System",
-    template: "%s | University Admission System"
+    default: "University Admission Management System",
+    template: "%s | University Admission Management System"
   },
   description: "A comprehensive university admission management system for students and administrators. Apply to programs, track applications, and manage admissions efficiently.",
   keywords: ["university", "admission", "college", "application", "education", "student portal", "academic"],
   authors: [{ name: "University Admission Team" }],
-  creator: "University Admission System",
+  creator: "University Admission Management System",
   publisher: "University",
   robots: {
     index: true,
@@ -40,16 +40,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://admission-system.vercel.app",
-    siteName: "University Admission System",
-    title: "University Admission System",
+    url: "https://ams.amiteshmaurya.com",
+    siteName: "University Admission Management System",
+    title: "University Admission Management System",
     description: "Apply to university programs and manage admissions efficiently with our comprehensive platform.",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "University Admission System",
+        alt: "University Admission Management System",
       },
     ],
   },
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@university",
     creator: "@university",
-    title: "University Admission System",
+    title: "University Admission Management System",
     description: "Apply to university programs and manage admissions efficiently.",
     images: ["/og-image.svg"],
   },
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     google: "google-site-verification-code",
   },
   alternates: {
-    canonical: "https://admission-system.vercel.app",
+    canonical: "https://ams.amiteshmaurya.com",
   },
   icons: {
     icon: "/favicon.svg",
@@ -96,9 +96,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "EducationalOrganization",
-              "name": "University Admission System",
+              "name": "University Admission Management System",
               "description": "A comprehensive university admission management system",
-              "url": "https://admission-system.vercel.app",
+              "url": "https://ams.amiteshmaurya.com",
               "sameAs": [
                 "https://facebook.com/university",
                 "https://twitter.com/university",
