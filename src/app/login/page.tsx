@@ -4,33 +4,66 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Card, Button, Input } from "@/components/UI";
+import { useToastContext } from "@/components/ToastProvider";
+import { useValidation } from "@/hooks/useValidation";
+import { loginSchema } from "@/lib/validation";
+
+// This would be better as a separate metadata export in a server component
+// but for demonstration in a client component, we'll handle it differently
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const toast = useToastContext();
+  const { errors, validate, validateField, clearFieldError } = useValidation(loginSchema);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    
+    // Clear field error when user starts typing
+    if (errors[name]) {
+      clearFieldError(name);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    
+    // Validate form data
+    const validation = validate(form);
+    if (!validation.isValid) {
+      toast.error("Validation Error", "Please fix the errors in the form");
+      return;
+    }
+    
     setLoading(true);
     
-    const res = await signIn("credentials", {
-      ...form,
-      redirect: false,
-    });
-    
-    setLoading(false);
-    
-    if (res?.ok) {
-      router.push("/");
-    } else {
-      setError("Invalid email or password");
+    try {
+      const res = await signIn("credentials", {
+        ...validation.data,
+        redirect: false,
+      });
+      
+      setLoading(false);
+      
+      if (res?.ok) {
+        toast.success("Login successful!", "Welcome back to the admission portal.");
+        router.push("/");
+      } else if (res?.error) {
+        const errorMessage = "Invalid email or password";
+        setError(errorMessage);
+        toast.error("Login failed", errorMessage);
+      }
+    } catch (error) {
+      setLoading(false);
+      const errorMessage = "Network error. Please try again.";
+      setError(errorMessage);
+      toast.error("Connection error", errorMessage);
+      console.error("Login error:", error);
     }
   };
 
@@ -55,6 +88,7 @@ export default function LoginPage() {
               name="email"
               value={form.email}
               onChange={handleChange}
+              error={errors.email}
               required
               placeholder="Enter your email"
             />
@@ -65,6 +99,7 @@ export default function LoginPage() {
               name="password"
               value={form.password}
               onChange={handleChange}
+              error={errors.password}
               required
               placeholder="Enter your password"
             />
@@ -78,9 +113,10 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={loading}
+              loading={loading}
               className="w-full"
             >
-              {loading ? "Signing in..." : "Sign in"}
+              Sign in
             </Button>
           </form>
         </Card>

@@ -1,121 +1,545 @@
-# 🎓 UniAdmit Portal - University Admission System
+# 🎓 University Admission Management System
 
-A modern, full-stack university admission system built with Next.js 15, featuring student applications, admin dashboard, and real-time status tracking. This comprehensive platform streamlines the entire university admission process with a beautiful, responsive interface and robust backend functionality.
+A comprehensive, modern university admission management platform built with Next.js 13+, TypeScript, MongoDB, and cutting-edge web technologies. This system provides a seamless experience for both students applying to university programs and administrators managing the admission process.
 
 ## 📋 Table of Contents
 
-- [Features](#-features)
-- [Demo & Screenshots](#-demo--screenshots)  
-- [Getting Started](#-getting-started)
-- [Project Structure](#️-project-structure)
-- [Usage Guide](#-usage-guide)
-- [Technology Stack](#-technology-stack)
-- [API Documentation](#-api-documentation)
-- [Deployment](#-deployment)
-- [Database Schema](#-database-schema)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Support & Contact](#️-support--contact)
+- [🌟 Features](#-features)
+- [🛠️ Technology Stack](#️-technology-stack)
+- [🚀 Getting Started](#-getting-started)
+- [📁 Project Structure](#-project-structure)
+- [🔧 Configuration](#-configuration)
+- [📚 API Documentation](#-api-documentation)
+- [🎨 UI Components](#-ui-components)
+- [🔐 Security Features](#-security-features)
+- [⚡ Performance & SEO](#-performance--seo)
+- [🚀 Deployment](#-deployment)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [📞 Support](#-support)
 
 ## 🌟 Features
 
-### 🎓 **Student Portal**
-- **User Registration & Authentication**: Secure account creation with role-based access
-- **Application Submission**: Intuitive form for program applications with validation
-- **Document Upload**: Support for transcripts, essays, and supporting documents
-- **Application Tracking**: Real-time status updates (Pending, Accepted, Rejected)
-- **Multiple Applications**: Students can apply to multiple programs
-- **Application History**: View all past and current applications
+### 🎓 **Student Experience**
+- **🔐 Secure Authentication**: Registration and login with email verification
+- **📝 Application Forms**: Intuitive, validated forms for program applications
+- **📎 Document Upload**: Drag-and-drop file upload for transcripts and essays
+- **📊 Application Tracking**: Real-time status updates and application history
+- **🔔 Smart Notifications**: Toast notifications for all user actions
+- **📱 Responsive Design**: Seamless experience across all devices
+- **♿ Accessibility**: WCAG 2.1 AA compliant interface
 
 ### 🛠️ **Admin Dashboard**
-- **Application Management**: Review and process student applications
-- **Status Control**: Update application statuses with notes
-- **Advanced Filtering**: Search by program, status, submission date
-- **Bulk Operations**: Process multiple applications efficiently
-- **Analytics Dashboard**: View admission statistics and trends
-- **User Management**: Manage student and admin accounts
+- **📈 Analytics Dashboard**: Comprehensive statistics and insights
+- **📋 Application Management**: Review, approve, or reject applications
+- **👥 User Management**: Manage student and admin accounts
+- **🔍 Advanced Search**: Filter applications by multiple criteria
+- **📊 Reporting Tools**: Generate detailed admission reports
+- **⚙️ System Configuration**: Manage application settings and periods
 
 ### 🔐 **Security & Authentication**
-- **NextAuth.js Integration**: Secure authentication system
-- **Password Hashing**: bcrypt encryption for user passwords
-- **Session Management**: Secure session handling and token management
-- **Role-Based Access**: Separate interfaces for students and administrators
-- **CSRF Protection**: Built-in security against cross-site request forgery
+- **🛡️ JWT Authentication**: Secure token-based authentication
+- **🔒 Password Hashing**: bcrypt encryption for user passwords
+- **✉️ Email Verification**: Mandatory email verification for new accounts
+- **🔑 Role-Based Access**: Separate permissions for students and admins
+- **🛠️ Error Boundaries**: Comprehensive error handling and recovery
+- **🔍 Input Validation**: Client and server-side validation with Zod
 
-### 🎨 **Modern User Interface**
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Dark Theme**: Professional gradient color scheme (slate-900/blue-900/indigo-900)
-- **Interactive Elements**: Smooth animations and hover effects
-- **Accessibility**: WCAG compliant with proper ARIA labels
-- **Loading States**: Beautiful loading indicators and skeleton screens
+### 🎨 **Modern UI/UX**
+- **✨ Glass Morphism**: Beautiful glassmorphism design elements
+- **🎭 Loading States**: Elegant loading indicators and spinners
+- **🎯 Toast System**: User-friendly notification system
+- **📐 Design System**: Consistent UI components and patterns
+- **🌈 Color Schemes**: Professional gradient themes
+- **🖱️ Interactive Elements**: Smooth hover effects and animations
 
-### ⚡ **Performance & Optimization**
-- **Server-Side Rendering**: Next.js 15 for optimal performance
-- **Static Generation**: Pre-built pages for faster loading
-- **Image Optimization**: Automatic image compression and lazy loading
-- **Database Optimization**: Efficient queries with Prisma ORM
-- **Caching Strategy**: Smart caching for improved response times
+## �️ Technology Stack
 
-## 🚀 Getting Started
+### Frontend
+- **⚛️ Next.js 13+** - React framework with App Router
+- **🔷 TypeScript** - Type-safe development
+- **🎨 Tailwind CSS** - Utility-first CSS framework
+- **🎭 Framer Motion** - Animation and interactive elements
+- **📝 React Hook Form** - Form management and validation
+- **🔍 Zod** - Schema validation library
+- **🍞 React Hot Toast** - Toast notification system
+
+### Backend & Database
+- **🌐 Next.js API Routes** - Serverless API endpoints
+- **🔐 NextAuth.js** - Authentication and session management
+- **🗄️ Prisma ORM** - Type-safe database client
+- **🍃 MongoDB** - NoSQL database with Atlas hosting
+- **🔒 bcrypt** - Password hashing and encryption
+- **🎫 JWT** - JSON Web Tokens for verification
+- **📧 Nodemailer** - Email service integration
+
+### Development Tools
+- **🔍 ESLint** - Code linting and formatting
+- **🎨 PostCSS** - CSS processing and optimization
+- **🚀 Vercel** - Deployment and hosting platform
+- **📱 Git** - Version control system
+- **🐳 Docker** - Containerization (optional)
+- **🧪 Jest** - Testing framework
+
+## �🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18.0 or later
 - npm or yarn package manager
+- MongoDB Atlas account (or local MongoDB)
+- Git for version control
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/amitesh-maurya/Admission-Management-System.git
    cd Admission-Management-System
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
-   cp .env.example .env.local
+   cp .env.example .env
    ```
    
-   Edit `.env.local` with your configuration:
+   Edit `.env` with your configuration:
+
    ```env
-   DATABASE_URL="file:./dev.db"
-   NEXTAUTH_SECRET="your-secret-key-here"
+   # Database
+   DATABASE_URL="mongodb+srv://username:password@cluster.mongodb.net/admission_management?retryWrites=true&w=majority"
+
+   # NextAuth.js
    NEXTAUTH_URL="http://localhost:3000"
+   NEXTAUTH_SECRET="your-secret-key-here"
+
+   # Email (Optional)
+   EMAIL_SERVER_HOST="smtp.gmail.com"
+   EMAIL_SERVER_PORT=587
+   EMAIL_SERVER_USER="your-email@gmail.com"
+   EMAIL_SERVER_PASSWORD="your-app-password"
+   EMAIL_FROM="noreply@yourdomain.com"
    ```
 
 4. **Initialize the database**
+
    ```bash
    npx prisma generate
    npx prisma db push
    ```
 
 5. **Start the development server**
+
    ```bash
    npm run dev
    ```
 
-6. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🏗️ Project Structure
+## 📁 Project Structure
 
 ```
-src/
-├── app/                    # Next.js 15 App Router
-│   ├── admin/             # Admin dashboard pages
-│   ├── student/           # Student portal pages
-│   ├── api/               # API routes
-│   └── auth/              # Authentication pages
-├── components/            # Reusable UI components
-│   ├── Navbar.tsx         # Navigation component
-│   ├── Providers.tsx      # Context providers
+admission-management-system/
+├── 📁 src/
+│   ├── 📁 app/                    # Next.js 13+ App Router
+│   │   ├── 📁 api/               # API routes
+│   │   │   ├── 📁 auth/          # Authentication endpoints
+│   │   │   ├── 📁 admin/         # Admin API routes
+│   │   │   └── 📁 student/       # Student API routes
+│   │   ├── 📁 admin/             # Admin dashboard pages
+│   │   ├── 📁 student/           # Student portal pages
+│   │   ├── 📁 login/             # Authentication pages
+│   │   └── 📁 register/          # Registration pages
+│   ├── 📁 components/            # Reusable React components
+│   │   ├── 📄 UI.tsx             # UI component library
+│   │   ├── 📄 FileUpload.tsx     # File upload component
+│   │   ├── 📄 ErrorBoundary.tsx  # Error handling
+│   │   ├── 📄 ToastProvider.tsx  # Toast notifications
+│   │   └── 📄 Navbar.tsx         # Navigation component
+│   ├── 📁 hooks/                 # Custom React hooks
+│   │   ├── 📄 useToast.ts        # Toast notifications
+│   │   ├── 📄 useValidation.ts   # Form validation
+│   │   └── 📄 useApi.ts          # API requests
+│   ├── 📁 lib/                   # Utility libraries
+│   │   ├── 📄 prisma.ts          # Database client
+│   │   ├── 📄 validation.ts      # Zod schemas
+│   │   ├── 📄 cache.ts           # Caching utilities
+│   │   └── 📄 auth.ts            # Authentication utilities
+│   └── 📁 styles/                # Global styles
+├── 📁 prisma/                    # Database schema and migrations
+│   ├── 📄 schema.prisma          # Database schema
+│   └── 📁 migrations/            # Database migrations
+├── 📁 public/                    # Static assets
+│   ├── 📄 favicon.ico            # Favicon
+│   └── 📁 images/                # Image assets
+└── 📁 docs/                      # Documentation
+```
+
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🔧 Configuration
+
+### Database Configuration
+
+The application uses Prisma with MongoDB. The database schema includes:
+
+- **Users**: Student and admin accounts with authentication
+- **Applications**: Student program applications with status tracking
+- **Sessions**: Secure session management with NextAuth.js
+
+### Authentication Setup
+
+NextAuth.js is configured with:
+
+- **Credentials Provider**: Email/password authentication
+- **JWT Strategy**: Secure token-based sessions
+- **Role-Based Access**: Separate interfaces for students and admins
+- **Email Verification**: Optional email verification workflow
+
+### File Upload Configuration
+
+- **Supported Formats**: PDF, DOC, DOCX, JPG, PNG
+- **Size Limit**: Maximum 5MB per file
+- **Storage**: Local storage (can be configured for cloud storage)
+- **Validation**: Client and server-side file validation
+
+## 📚 API Documentation
+
+### Authentication Endpoints
+
+```typescript
+POST /api/register              # User registration
+POST /api/auth/[...nextauth]    # NextAuth.js authentication
+GET  /api/auth/verify-email     # Email verification
+```
+
+### Student Endpoints
+
+```typescript
+POST /api/student/application   # Submit application
+GET  /api/student/status        # Check application status
+PUT  /api/student/application   # Update application
+```
+
+### Admin Endpoints
+
+```typescript
+GET  /api/admin/applications    # List all applications
+PUT  /api/admin/applications/:id # Update application status
+GET  /api/admin/users          # Manage users
+POST /api/admin/users          # Create new user
+```
+
+### Response Format
+
+All API endpoints return consistent JSON responses:
+
+```json
+{
+  "success": true,
+  "data": { ... },
+  "message": "Success message"
+}
+```
+
+Error responses:
+
+```json
+{
+  "success": false,
+  "error": "Error message",
+  "details": { ... }
+}
+```
+
+## 🎨 UI Components
+
+### Core Components
+
+- **Card**: Versatile container with glass morphism effects
+- **Button**: Multiple variants with loading states
+- **Input**: Form inputs with validation support
+- **Select**: Dropdown selections with error handling
+- **FileUpload**: Drag-and-drop file upload component
+- **Toast**: Notification system with multiple types
+- **Spinner**: Loading indicators in various sizes
+- **Alert**: Contextual alerts and messages
+- **Badge**: Status indicators and labels
+
+### Component Library Features
+
+- **TypeScript Support**: Fully typed component props
+- **Accessibility**: ARIA labels and keyboard navigation
+- **Responsive Design**: Mobile-first approach
+- **Theme Consistency**: Unified color palette and spacing
+- **Animation**: Smooth transitions and hover effects
+
+## 🔐 Security Features
+
+### Authentication Security
+
+- **Password Hashing**: bcrypt with salt rounds
+- **JWT Tokens**: Secure session management
+- **CSRF Protection**: Cross-site request forgery protection
+- **Role Verification**: Server-side role checking
+- **Session Expiry**: Automatic session timeout
+
+### Data Protection
+
+- **Input Validation**: Client and server-side validation
+- **SQL Injection Prevention**: Prisma ORM protection
+- **XSS Protection**: Content sanitization
+- **Rate Limiting**: API request throttling
+- **Error Handling**: Secure error messages
+
+### Privacy & Compliance
+
+- **Data Encryption**: Sensitive data encryption
+- **Audit Logging**: User action tracking
+- **GDPR Ready**: Data privacy compliance
+- **Secure Headers**: Security-focused HTTP headers
+
+## ⚡ Performance & SEO
+
+### Performance Optimizations
+
+- **Server-Side Rendering**: Fast initial page loads
+- **Static Generation**: Pre-built pages for optimal performance
+- **Image Optimization**: Automatic image compression and lazy loading
+- **Code Splitting**: Bundle optimization for faster loading
+- **Caching Strategy**: Smart API response caching
+- **Database Optimization**: Efficient Prisma queries
+
+### SEO Features
+
+- **Meta Tags**: Comprehensive page metadata
+- **Open Graph**: Social media preview optimization
+- **Structured Data**: JSON-LD schema markup
+- **Sitemap**: Automatic sitemap generation
+- **Performance Metrics**: Core Web Vitals tracking
+- **Accessibility**: Screen reader optimization
+
+## 🚀 Deployment
+
+### Vercel Deployment (Recommended)
+
+1. **Push to GitHub**
+
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+2. **Connect to Vercel**
+   - Visit [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Configure environment variables
+   - Deploy automatically
+
+3. **Environment Variables**
+   Add these to your Vercel dashboard:
+
+   ```env
+   DATABASE_URL=your_mongodb_connection_string
+   NEXTAUTH_SECRET=your_production_secret
+   NEXTAUTH_URL=https://yourdomain.vercel.app
+   EMAIL_SERVER_HOST=your_smtp_host
+   EMAIL_SERVER_USER=your_email
+   EMAIL_SERVER_PASSWORD=your_password
+   ```
+
+### Alternative Deployment Options
+
+- **Docker**: Containerized deployment
+- **AWS**: EC2, Lambda, or Amplify
+- **Railway**: Simple deployment platform
+- **DigitalOcean**: App Platform deployment
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run E2E tests
+npm run test:e2e
+```
+
+### Test Coverage
+
+- **Unit Tests**: Component and utility testing
+- **Integration Tests**: API endpoint testing
+- **E2E Tests**: Complete user workflow testing
+- **Performance Tests**: Load and stress testing
 │   └── UI.tsx             # UI component library
-└── lib/                   # Utilities and configurations
+## 🤝 Contributing
+
+We welcome contributions to improve the University Admission Management System! Here's how you can help:
+
+### Development Workflow
+
+1. **Fork the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/Admission-Management-System.git
+   cd Admission-Management-System
+   ```
+
+2. **Create a feature branch**
+
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+
+3. **Make your changes**
+   - Follow the existing code style
+   - Add tests for new features
+   - Update documentation as needed
+
+4. **Test your changes**
+
+   ```bash
+   npm run test
+   npm run lint
+   npm run build
+   ```
+
+5. **Commit your changes**
+
+   ```bash
+   git commit -m 'Add some amazing feature'
+   ```
+
+6. **Push to your branch**
+
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+
+7. **Open a Pull Request**
+
+### Code Style Guidelines
+
+- Use TypeScript for all new code
+- Follow ESLint rules and Prettier formatting
+- Write meaningful commit messages
+- Add JSDoc comments for complex functions
+- Ensure accessibility compliance
+
+### Reporting Issues
+
+When reporting issues, please include:
+
+- Clear description of the problem
+- Steps to reproduce the issue
+- Expected vs actual behavior
+- Screenshots if applicable
+- Environment details (OS, browser, Node.js version)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2025 University Admission Management System
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## 📞 Support
+
+Need help? We're here to assist you!
+
+### 📧 Contact Information
+
+- **Email**: [amitesh.maurya@university-admission.com](mailto:amitesh.maurya@university-admission.com)
+- **GitHub Issues**: [Report a Bug](https://github.com/amitesh-maurya/Admission-Management-System/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/amitesh-maurya/Admission-Management-System/discussions)
+
+### 📖 Documentation
+
+- **API Docs**: [/docs/api.md](./docs/api.md)
+- **Setup Guide**: [/docs/setup.md](./docs/setup.md)
+- **Deployment Guide**: [/docs/deployment.md](./docs/deployment.md)
+- **Contributing Guide**: [/docs/contributing.md](./docs/contributing.md)
+
+### 🛠️ Troubleshooting
+
+Common issues and solutions:
+
+- **Database Connection**: Ensure MongoDB URI is correct
+- **Environment Variables**: Double-check all required variables
+- **Port Conflicts**: Change port in package.json if needed
+- **Dependencies**: Run `npm install` to update packages
+
+### 🌟 Roadmap
+
+Upcoming features and improvements:
+
+- [ ] Mobile app development
+- [ ] Advanced analytics dashboard
+- [ ] Bulk application processing
+- [ ] Integration with external APIs
+- [ ] Multi-language support
+- [ ] Advanced reporting features
+- [ ] Real-time notifications
+- [ ] Video interview scheduling
+
+---
+
+## 🙏 Acknowledgments
+
+Special thanks to all contributors and the open-source community:
+
+- **Next.js Team** - Amazing React framework
+- **Prisma Team** - Excellent database toolkit
+- **Tailwind CSS** - Utility-first CSS framework
+- **MongoDB** - Flexible NoSQL database
+- **Vercel** - Seamless deployment platform
+- **All Contributors** - Thank you for your valuable contributions!
+
+---
+
+<div align="center">
+
+**⭐ If you find this project helpful, please consider giving it a star! ⭐**
+
+**Built with ❤️ by [Amitesh Maurya](https://github.com/amitesh-maurya)**
+
+</div>
 ```
 
 ## 🎯 Usage

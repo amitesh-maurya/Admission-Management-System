@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "@/components/Providers";
+import { ToastProvider } from "@/components/ToastProvider";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,22 +16,106 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "University Admission System",
-  description: "A comprehensive university admission management system",
+  title: {
+    default: "University Admission System",
+    template: "%s | University Admission System"
+  },
+  description: "A comprehensive university admission management system for students and administrators. Apply to programs, track applications, and manage admissions efficiently.",
+  keywords: ["university", "admission", "college", "application", "education", "student portal", "academic"],
+  authors: [{ name: "University Admission Team" }],
+  creator: "University Admission System",
+  publisher: "University",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://admission-system.vercel.app",
+    siteName: "University Admission System",
+    title: "University Admission System",
+    description: "Apply to university programs and manage admissions efficiently with our comprehensive platform.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "University Admission System",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@university",
+    creator: "@university",
+    title: "University Admission System",
+    description: "Apply to university programs and manage admissions efficiently.",
+    images: ["/og-image.jpg"],
+  },
+  verification: {
+    google: "google-site-verification-code",
+  },
+  alternates: {
+    canonical: "https://admission-system.vercel.app",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
+  },
 };
+
+import React, { ReactNode } from "react";
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: ReactNode;
+}): React.ReactNode {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* <meta name="theme-color" content="#3b82f6" /> */}
+        <meta name="msapplication-TileColor" content="#3b82f6" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "EducationalOrganization",
+              "name": "University Admission System",
+              "description": "A comprehensive university admission management system",
+              "url": "https://admission-system.vercel.app",
+              "sameAs": [
+                "https://facebook.com/university",
+                "https://twitter.com/university",
+                "https://linkedin.com/company/university"
+              ]
+            })
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}
       >
         <Providers>
-          {children}
+          <ToastProvider>
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
+          </ToastProvider>
         </Providers>
       </body>
     </html>
