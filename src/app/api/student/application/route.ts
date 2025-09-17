@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]";
 
 type SessionUser = {
@@ -13,10 +13,8 @@ type SessionUser = {
 
 export async function POST(req: Request) {
   let session: { user?: SessionUser } | null = null;
-  
   try {
     session = await getServerSession(authOptions) as { user?: SessionUser } | null;
-    
     // Debug logging
     console.log("=== APPLICATION SUBMISSION DEBUG ===");
     console.log("Session exists:", !!session);
@@ -24,7 +22,6 @@ export async function POST(req: Request) {
     console.log("User role:", session?.user?.role);
     console.log("User ID:", session?.user?.id);
     console.log("=====================================");
-    
     if (!session || !session.user) {
       console.log("❌ Authentication failed: No session or user");
       return NextResponse.json({ 
@@ -32,7 +29,6 @@ export async function POST(req: Request) {
         debug: "No session found"
       }, { status: 401 });
     }
-    
     if (!session.user.id) {
       console.log("❌ Authentication failed: No user ID");
       return NextResponse.json({ 
@@ -40,7 +36,6 @@ export async function POST(req: Request) {
         debug: "User ID missing from session"
       }, { status: 400 });
     }
-    
     // Check role if it exists
     if (session.user.role && session.user.role !== "STUDENT") {
       console.log(`❌ Authorization failed: Role is ${session.user.role}, expected STUDENT`);
@@ -49,7 +44,6 @@ export async function POST(req: Request) {
         debug: `Current role: ${session.user.role}`
       }, { status: 403 });
     }
-    
     console.log("✅ Authentication successful");
   } catch (authError) {
     console.error("Authentication error:", authError);
