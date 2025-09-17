@@ -1,45 +1,18 @@
 import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import Credentials from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import { compare } from "bcrypt";
 import prisma from "@/lib/prisma";
 
-
-import type { NextAuthOptions, Session, User } from "next-auth";
-import type { JWT } from "next-auth/jwt";
-
-// Extend Session, User, and JWT types to include id and role for user identification and authorization across the app
-declare module "next-auth" {
-  interface Session {
-    user: User & {
-      id: string;
-      role?: string | null;
-    };
-  }
-  interface User {
-    id: string;
-    name?: string | null;
-    email?: string | null;
-    role?: string | null;
-  }
-}
-
-declare module "next-auth/jwt" {
-  interface JWT {
-    id?: string;
-    role?: string | null;
-  }
-}
-
-export const authOptions: NextAuthOptions = {
+export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
-    CredentialsProvider({
+    Credentials({
       credentials: {
         email: { label: "Email", type: "text", placeholder: "your@email.com" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: Record<"email" | "password", string> | undefined) {
+      async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
         const user = await prisma.user.findUnique({ where: { email: credentials.email } });
         if (!user || !user.password) return null;
@@ -55,14 +28,14 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, token }: { session: Session; token: JWT }) {
+    async session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;
       }
       return session;
     },
-    async jwt({ token, user }: { token: JWT; user?: User }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.role = user.role;
@@ -77,7 +50,6 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
+});
 
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+export const { GET, POST } = handlers;
