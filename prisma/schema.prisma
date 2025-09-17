@@ -30,13 +30,51 @@ enum Role {
 }
 
 model Application {
-  id          String            @id @default(auto()) @map("_id") @db.ObjectId
-  student     User              @relation(fields: [studentId], references: [id])
-  studentId   String            @db.ObjectId
-  program     String
-  status      ApplicationStatus @default(PENDING)
-  submittedAt DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id                  String            @id @default(auto()) @map("_id") @db.ObjectId
+  student             User              @relation(fields: [studentId], references: [id])
+  studentId           String            @db.ObjectId
+  
+  // Basic Application Info
+  program             String
+  applicationNumber   String?           // Made optional to avoid conflicts
+  
+  // Personal Information
+  personalStatement   String
+  previousEducation   String
+  
+  // Academic Information
+  courses             String[]          // Array of selected courses
+  expectedGrade       String
+  currentGPA          Float?
+  transcriptUploaded  Boolean           @default(false)
+  
+  // Contact & Emergency
+  email               String?
+  phoneNumber         String?
+  emergencyContact    String?
+  emergencyPhone      String?
+  
+  // Background Information
+  workExperience      String?
+  extracurricularActivities String?
+  scholarshipNeeded   Boolean           @default(false)
+  
+  // Documents & References
+  documentsSubmitted  String[]          // Array of document types submitted
+  referenceLetters    Int               @default(0)
+  
+  // Preferences
+  startDate           DateTime?
+  studyMode           StudyMode         @default(FULLTIME)
+  accommodation       Boolean           @default(false)
+  
+  // Application Status & Tracking
+  status              ApplicationStatus @default(PENDING)
+  submittedAt         DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  reviewedAt          DateTime?
+  reviewedBy          String?           @db.ObjectId
+  notes               String?
 
   @@map("applications")
 }
@@ -45,4 +83,13 @@ enum ApplicationStatus {
   PENDING
   ACCEPTED
   REJECTED
+  UNDER_REVIEW
+  WAITLISTED
+}
+
+enum StudyMode {
+  FULLTIME
+  PARTTIME
+  ONLINE
+  HYBRID
 }
