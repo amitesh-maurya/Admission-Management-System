@@ -1,7 +1,27 @@
 {
-  "name": "to-do-list",
-  "version": "0.1.0",
-  "private": true,
+  "name": "admitpro-portal",
+  "version": "1.0.0",
+  "description": "A comprehensive, modern university admission management system built with Next.js, TypeScript, and MongoDB",
+  "author": "Amitesh Maurya <amitesh@amiteshmaurya.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amitesh-maurya/Admission-Management-System"
+  },
+  "homepage": "https://amiteshmaurya.com",
+  "keywords": [
+    "university",
+    "admission",
+    "management",
+    "nextjs",
+    "typescript",
+    "mongodb",
+    "prisma",
+    "education",
+    "student-portal",
+    "open-source"
+  ],
+  "private": false,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",

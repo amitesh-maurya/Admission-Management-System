@@ -26,7 +26,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 min-h-screen">
+    <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         {/* Animated Background */}
@@ -38,7 +38,7 @@ export default function Home() {
             <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
               <div className="sm:text-center lg:text-left">
                 <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl animate-fade-in-up">
-                  <span className="block xl:inline bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">🎓 UniAdmit</span>{' '}
+                  <span className="block xl:inline bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">🎓 AdmitPro</span>{' '}
                   <span className="block text-blue-200 xl:inline">Portal</span>
                 </h1>
                 <p className="mt-3 text-base text-blue-200 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">

@@ -1,4 +1,15 @@
-# 🎓 University Admission Management System
+# 🎓 AdmitPro Portal - University Admission Management System
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript&logoColor=white)](https://typescriptlang.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6-green?logo=mongodb&logoColor=white)](https://mongodb.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white)](https://prisma.io/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
+> 🌟 **Open Source University Admission Management System** - A comprehensive, modern platform built with Next.js, TypeScript, and MongoDB for seamless student applications and administrative management.
+
+**👨‍💻 Developed by [Amitesh Maurya](https://amiteshmaurya.com) | 📖 Open Source | 🚀 Production Ready**
 
 A comprehensive, modern university admission management platform built with Next.js 13+, TypeScript, MongoDB, and cutting-edge web technologies. This system provides a seamless experience for both students applying to university programs and administrators managing the admission process.
 

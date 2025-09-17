@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "@/components/Providers";
 import { ToastProvider } from "@/components/ToastProvider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,14 +20,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
   title: {
-    default: "University Admission Management System",
-    template: "%s | University Admission Management System"
+    default: "AdmitPro Portal - University Admission Management System",
+    template: "%s | AdmitPro Portal"
   },
-  description: "A comprehensive university admission management system for students and administrators. Apply to programs, track applications, and manage admissions efficiently.",
-  keywords: ["university", "admission", "college", "application", "education", "student portal", "academic"],
-  authors: [{ name: "University Admission Team" }],
-  creator: "University Admission Management System",
-  publisher: "University",
+  description: "AdmitPro Portal - A comprehensive, modern university admission management system for students and administrators. Apply to programs, track applications, and manage admissions efficiently.",
+  keywords: ["university", "admission", "college", "application", "education", "student portal", "academic", "admitpro", "amitesh maurya"],
+  authors: [{ name: "Amitesh Maurya", url: "https://amiteshmaurya.com" }],
+  creator: "Amitesh Maurya",
+  publisher: "AdmitPro Portal",
   robots: {
     index: true,
     follow: true,
@@ -41,24 +43,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://uams.amiteshmaurya.com",
-    siteName: "University Admission Management System",
-    title: "University Admission Management System",
-    description: "Apply to university programs and manage admissions efficiently with our comprehensive platform.",
+    siteName: "AdmitPro Portal",
+    title: "AdmitPro Portal - University Admission Management System",
+    description: "Apply to university programs and manage admissions efficiently with our comprehensive, modern platform.",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "University Admission Management System",
+        alt: "AdmitPro Portal - University Admission Management System",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@university",
-    creator: "@university",
-    title: "University Admission Management System",
-    description: "Apply to university programs and manage admissions efficiently.",
+    site: "@amiteshmaurya",
+    creator: "@amiteshmaurya",
+    title: "AdmitPro Portal - University Admission Management System",
+    description: "Apply to university programs and manage admissions efficiently with our modern platform.",
     images: ["/og-image.svg"],
   },
   verification: {
@@ -96,26 +98,34 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "EducationalOrganization",
-              "name": "University Admission Management System",
-              "description": "A comprehensive university admission management system",
+              "name": "AdmitPro Portal",
+              "description": "A comprehensive university admission management system developed by Amitesh Maurya",
               "url": "https://uams.amiteshmaurya.com",
+              "author": {
+                "@type": "Person",
+                "name": "Amitesh Maurya",
+                "url": "https://amiteshmaurya.com"
+              },
               "sameAs": [
-                "https://facebook.com/university",
-                "https://twitter.com/university",
-                "https://linkedin.com/company/university"
+                "https://amiteshmaurya.com",
+                "https://github.com/amitesh-maurya"
               ]
             })
           }}
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen flex flex-col`}
         suppressHydrationWarning={true}
       >
         <Providers>
           <ToastProvider>
             <ErrorBoundary>
-              {children}
+              <Navbar />
+              <main className="flex-grow">
+                {children}
+              </main>
+              <Footer />
             </ErrorBoundary>
           </ToastProvider>
         </Providers>
