@@ -14,7 +14,7 @@ type SessionUser = {
 export async function POST(req: Request) {
   let session: { user?: SessionUser } | null = null;
   try {
-    session = await getServerSession(authOptions) as { user?: SessionUser } | null;
+    session = await getServerSession(authOptions, req) as { user?: SessionUser } | null;
     // Debug logging
     console.log("=== APPLICATION SUBMISSION DEBUG ===");
     console.log("Session exists:", !!session);
