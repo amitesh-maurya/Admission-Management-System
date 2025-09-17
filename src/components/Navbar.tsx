@@ -111,13 +111,22 @@ export default function Navbar() {
                     </>
                   )}
                   {session.user?.role === "ADMIN" && (
-                    <Link 
-                      href="/admin/applications" 
-                      className="hover:bg-blue-800/60 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:text-blue-100 flex items-center gap-2"
-                    >
-                      <FontAwesomeIcon icon={faTachometerAlt} className="w-4 h-4" />
-                      <span>Dashboard</span>
-                    </Link>
+                    <>
+                      <Link 
+                        href="/admin/dashboard" 
+                        className="hover:bg-blue-800/60 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:text-blue-100 flex items-center gap-2"
+                      >
+                        <FontAwesomeIcon icon={faTachometerAlt} className="w-4 h-4" />
+                        <span>Dashboard</span>
+                      </Link>
+                      <Link 
+                        href="/admin/applications" 
+                        className="hover:bg-blue-800/60 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:text-blue-100 flex items-center gap-2"
+                      >
+                        <FontAwesomeIcon icon={faFileAlt} className="w-4 h-4" />
+                        <span>Applications</span>
+                      </Link>
+                    </>
                   )}
                   <button
                     onClick={() => signOut()}
@@ -232,14 +241,24 @@ export default function Navbar() {
                   </>
                 )}
                 {session.user?.role === "ADMIN" && (
-                  <Link
-                    href="/admin/applications"
-                    className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/60 transition-all duration-200 flex items-center gap-3"
-                    onClick={closeMenu}
-                  >
-                    <FontAwesomeIcon icon={faTachometerAlt} className="w-5 h-5" />
-                    <span>Admin Dashboard</span>
-                  </Link>
+                  <>
+                    <Link
+                      href="/admin/dashboard"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/60 transition-all duration-200 flex items-center gap-3"
+                      onClick={closeMenu}
+                    >
+                      <FontAwesomeIcon icon={faTachometerAlt} className="w-5 h-5" />
+                      <span>Admin Dashboard</span>
+                    </Link>
+                    <Link
+                      href="/admin/applications"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-blue-100 hover:text-white hover:bg-blue-800/60 transition-all duration-200 flex items-center gap-3"
+                      onClick={closeMenu}
+                    >
+                      <FontAwesomeIcon icon={faFileAlt} className="w-5 h-5" />
+                      <span>Manage Applications</span>
+                    </Link>
+                  </>
                 )}
                 <button
                   onClick={() => {
