@@ -2,7 +2,7 @@ export const runtime = "nodejs";
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]";
+import { GET } from "@/app/api/auth/[...nextauth]/route";
 
 type SessionUser = {
   name?: string | null;
@@ -15,7 +15,7 @@ type SessionUser = {
 export async function POST(req: NextRequest) {
   let session: { user?: SessionUser } | null = null;
   try {
-    session = await getServerSession(authOptions) as { user?: SessionUser } | null;
+    session = await getServerSession(GET) as { user?: SessionUser } | null;
     // Debug logging
     console.log("=== APPLICATION SUBMISSION DEBUG ===");
     console.log("Session exists:", !!session);
