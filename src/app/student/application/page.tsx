@@ -113,6 +113,7 @@ export default function ApplicationForm() {
 					currentGPA: form.currentGPA ? parseFloat(form.currentGPA) : null,
 					startDate: form.startDate ? new Date(form.startDate).toISOString() : null,
 				}),
+				credentials: "include"
 			});
 			setLoading(false);
 			if (res.ok) {
