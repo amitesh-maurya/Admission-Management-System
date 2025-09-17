@@ -7,8 +7,15 @@ import  authOptions  from "@/lib/authOptions";
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-  if (!session || session.user.role !== "ADMIN") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  // Debug logging for session
+  console.log("=== ADMIN APPLICATIONS SESSION DEBUG ===");
+  console.log("Session exists:", !!session);
+  console.log("User exists:", !!session?.user);
+  console.log("User role:", session?.user?.role);
+  console.log("User ID:", session?.user?.id);
+  console.log("=====================================");
+  if (!session || !session.user || session.user.role !== "ADMIN" || !session.user.id) {
+    return NextResponse.json({ error: "Unauthorized or missing user info" }, { status: 401 });
   }
   const applications = await prisma.application.findMany({
     include: { student: true },
@@ -19,8 +26,15 @@ export async function GET() {
 
 export async function PATCH(req: NextRequest) {
   const session = await getServerSession(authOptions);
-  if (!session || session.user.role !== "ADMIN") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  // Debug logging for session
+  console.log("=== ADMIN APPLICATIONS PATCH SESSION DEBUG ===");
+  console.log("Session exists:", !!session);
+  console.log("User exists:", !!session?.user);
+  console.log("User role:", session?.user?.role);
+  console.log("User ID:", session?.user?.id);
+  console.log("=====================================");
+  if (!session || !session.user || session.user.role !== "ADMIN" || !session.user.id) {
+    return NextResponse.json({ error: "Unauthorized or missing user info" }, { status: 401 });
   }
   const { id, status } = await req.json();
   if (!id || !status) {

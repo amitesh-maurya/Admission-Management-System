@@ -50,6 +50,7 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
+      console.log('SESSION CALLBACK:', { session, token });
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;

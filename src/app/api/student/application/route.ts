@@ -1,8 +1,8 @@
 export const runtime = "nodejs";
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth/next";
-import { GET } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import authOptions from "@/lib/authOptions";
 
 type SessionUser = {
   name?: string | null;
@@ -15,7 +15,7 @@ type SessionUser = {
 export async function POST(req: NextRequest) {
   let session: { user?: SessionUser } | null = null;
   try {
-    session = await getServerSession(GET) as { user?: SessionUser } | null;
+    session = await getServerSession(authOptions) as { user?: SessionUser } | null;
     // Debug logging
     console.log("=== APPLICATION SUBMISSION DEBUG ===");
     console.log("Session exists:", !!session);
@@ -23,21 +23,21 @@ export async function POST(req: NextRequest) {
     console.log("User role:", session?.user?.role);
     console.log("User ID:", session?.user?.id);
     console.log("=====================================");
-    if (!session || !session.user) {
-      console.log("❌ Authentication failed: No session or user");
+    if (!session || !session.user || !session.user.id) {
+      console.log("❌ Authentication failed: No session, user, or user ID");
       return NextResponse.json({ 
         error: "Authentication required. Please log in first.",
-        debug: "No session found"
+        debug: "No session/user/userId found"
       }, { status: 401 });
     }
-    if (!session.user.id) {
-      console.log("❌ Authentication failed: No user ID");
+    if (session.user.role && session.user.role !== "STUDENT") {
+      console.log(`❌ Authorization failed: Role is ${session.user.role}, expected STUDENT`);
       return NextResponse.json({ 
-        error: "User ID is missing. Please try logging out and back in.",
-        debug: "User ID missing from session"
-      }, { status: 400 });
+        error: `Access denied. Your role is '${session.user.role}' but 'STUDENT' is required.`,
+        debug: `Current role: ${session.user.role}`
+      }, { status: 403 });
     }
-    // Check role if it exists
+    console.log("✅ Authentication successful");
     if (session.user.role && session.user.role !== "STUDENT") {
       console.log(`❌ Authorization failed: Role is ${session.user.role}, expected STUDENT`);
       return NextResponse.json({ 
