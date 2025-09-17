@@ -41,17 +41,19 @@ export default function Home() {
                   <span className="block xl:inline bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">🎓 AdmitPro</span>{' '}
                   <span className="block text-blue-200 xl:inline">Portal</span>
                 </h1>
-                <p className="mt-3 text-base text-blue-200 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                <p className="mt-3 text-base text-slate-200 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0 leading-relaxed">
                   Your gateway to higher education. Apply to programs, track your applications, and manage the entire admission process seamlessly with our modern platform.
                 </p>
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   {!session ? (
-                    <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex">
-                      <Link href="/register" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 md:py-4 md:text-lg md:px-10 shadow-lg hover:shadow-xl transition-all duration-200">
-                        🚀 Get Started
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-3">
+                      <Link href="/register" className="group inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-xl text-white bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:via-blue-600 hover:to-indigo-700 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-0.5">
+                        <span className="mr-2 text-lg">🚀</span>
+                        Get Started
                       </Link>
-                      <Link href="/login" className="w-full flex items-center justify-center px-8 py-3 border border-blue-400 text-base font-medium rounded-lg text-blue-200 bg-blue-900/50 hover:bg-blue-800/60 md:py-4 md:text-lg md:px-10 backdrop-blur-sm transition-all duration-200">
-                        🔑 Login
+                      <Link href="/login" className="group inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-xl text-blue-200 bg-slate-800/60 border border-blue-400/50 hover:bg-slate-700/80 hover:border-blue-300 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                        <span className="mr-2 text-lg">🔑</span>
+                        Login
                       </Link>
                     </div>
                   ) : (
