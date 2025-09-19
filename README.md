@@ -469,7 +469,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```
 MIT License
 
-Copyright (c) 2025 University Admission Management System
+Copyright (c) 2025 Amitesh Maurya
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -496,7 +496,7 @@ Need help? We're here to assist you!
 
 ### 📧 Contact Information
 
-- **Email**: [amitesh.maurya@university-admission.com](mailto:amitesh.maurya@university-admission.com)
+- **Email**: [aamiteshmaurya@gmail.com](mailto:amitesh.maurya@university-admission.com)
 - **GitHub Issues**: [Report a Bug](https://github.com/amitesh-maurya/Admission-Management-System/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/amitesh-maurya/Admission-Management-System/discussions)
 
@@ -753,7 +753,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you have any questions or run into issues, please feel free to reach out:
 
 ### 📬 Get in Touch
-- **Email**: [your.email@example.com](mailto:aamiteshmaurya@gmail.com)
+- **Email**: [aamiteshmaurya@gmail.com](mailto:aamiteshmaurya@gmail.com)
 - **LinkedIn**: [Connect with me on LinkedIn](https://linkedin.com/in/amitesh-maurya)
 - **Portfolio**: [View my portfolio](https://amiteshmaurya.com)
 - **GitHub**: [Follow me on GitHub](https://github.com/amitesh-maurya)
@@ -795,4 +795,4 @@ I'm always interested in connecting with fellow developers and discussing:
 
 **🎓 UniAdmit Portal** - Making university admissions simple and accessible.
 
-*Built with ❤️ using Next.js and modern web technologies*
+*Built with ❤️ by [Amitesh Maurya](https://github.com/amitesh-maurya)** using Next.js and modern web technologies*
